@@ -41,20 +41,23 @@ class Addfriends extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text('Gender'),
-                Row(
-                  children: [
-                    //RadioButton(),
-
-                    Text('Male'),
-                  ],
+                Text('Gender',
+                  style: TextStyle(
+                    fontSize: 18
+                  ),
                 ),
-                Row(
-                  children: [
-                    //RadioButton(),
+                Radio(value: null, groupValue: null, onChanged: null),
+                Text('Male',
+                  style: TextStyle(
+                      fontSize: 18
+                  ),
+                ),
 
-                    Text('Female')
-                  ],
+                Radio(value: null, groupValue: null, onChanged: null),
+                Text('Female',
+                  style: TextStyle(
+                      fontSize: 18
+                  ),
                 )
 
               ],
@@ -65,7 +68,11 @@ class Addfriends extends StatelessWidget {
         ),
 
             MaterialButton(onPressed: (){},
-              child: Text('Submit'),
+              child: Text('Submit',
+                style: TextStyle(color: Colors.white,
+                  fontSize: 18
+                ),
+              ),
               color: Colors.orange,
 
             ),
