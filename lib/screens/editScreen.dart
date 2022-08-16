@@ -2,12 +2,16 @@ import 'package:flutter/material.dart';
 
 import '../common/customTextfield.dart';
 
-class EditScreen extends StatelessWidget {
-  //const EditScreen({Key? key}) : super(key: key);
+class EditScreen extends StatefulWidget {
+  @override
+  State<EditScreen> createState() => _EditScreenState();
+}
 
+class _EditScreenState extends State<EditScreen> {
+
+  String gender ='F';
   final TextEditingController nameController = TextEditingController();
   final TextEditingController ageController = TextEditingController();
-
 
   @override
   Widget build(BuildContext context) {
@@ -42,19 +46,39 @@ class EditScreen extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text('Gender'),
+                Text('Gender',
+                  style: TextStyle(
+                      fontSize: 18
+                  ),
+                ),
                 Row(
                   children: [
-                    //RadioButton(),
+                    Radio(value: 'M', groupValue: gender, onChanged: (value){
+                      setState((){
+                        gender='M';
+                      });
+                    }),
 
-                    Text('Male'),
+                    Text('Male',
+                      style: TextStyle(
+                          fontSize: 18
+                      ),
+                    ),
                   ],
                 ),
                 Row(
                   children: [
-                    //RadioButton(),
+                    Radio(value: 'F', groupValue: gender, onChanged: (value){
+                      setState((){
+                        gender='F';
+                      });
+                    }),
 
-                    Text('Female')
+                    Text('Female',
+                      style: TextStyle(
+                          fontSize: 18
+                      ),
+                    )
                   ],
                 )
 

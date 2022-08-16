@@ -11,5 +11,10 @@ class FriendController extends ChangeNotifier{
     notifyListeners();
   }
 
+  void removeFriends(String id){
+    int index = friends.indexWhere((element) => element.id==id);
+    friends.removeAt(index);
+    notifyListeners();
+  }
 
 }

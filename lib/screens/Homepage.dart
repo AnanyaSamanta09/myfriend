@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:myfriend/controllers/addFriendController.dart';
 import 'package:myfriend/models/friendModel.dart';
 import 'package:myfriend/screens/add_friends.dart';
+import 'package:myfriend/screens/editScreen.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
-
-  friendCard(BuildContext context,FriendModel friend){
+  bool isMyBestFriend = false;
+  friendCard(BuildContext context, FriendModel friend) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
@@ -26,31 +26,38 @@ class HomePage extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(friend.name,
-                    style: TextStyle(
-                        fontSize: 22
-                    ),
+                  Text(
+                    friend.name,
+                    style: TextStyle(fontSize: 22),
                   ),
-                  Text(friend.age.toString(),
-                    style: TextStyle(
-                        fontSize: 22
-                    ),
+                  Text(
+                    friend.age.toString(),
+                    style: TextStyle(fontSize: 22),
                   ),
-
-                  Text(friend.gender,
-                    style: TextStyle(
-                        fontSize: 16
-                    ),
+                  Text(
+                    friend.gender,
+                    style: TextStyle(fontSize: 16),
                   ),
                 ],
               ),
               Row(
                 children: [
-                  IconButton(onPressed: (){}, icon: Icon(Icons.edit)),
-
-                  IconButton(onPressed: (){}, icon: Icon(Icons.favorite_border)),
-
-                  IconButton(onPressed: (){}, icon: Icon(Icons.delete)),
+                  IconButton(onPressed: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=> EditScreen()));
+                  }, icon: Icon(Icons.edit)),
+                  IconButton(
+                      onPressed: () {
+                        isMyBestFriend = true;
+                      },
+                      icon: Icon(Icons.favorite_border)),
+                  Consumer<FriendController>(
+                    builder: (context, controller, child) {
+                      return IconButton(onPressed: () {
+                        controller.removeFriends(friend.id);
+                      },
+                          icon: Icon(Icons.delete));
+                    },
+                  ),
                 ],
               )
             ],
@@ -68,56 +75,54 @@ class HomePage extends StatelessWidget {
         centerTitle: true,
         backgroundColor: Colors.orange.shade500,
         actions: [
-
-          PopupMenuButton(onSelected: (value){
-            print(value);
-          },
-            itemBuilder: (BuildContext context){
-            return [
-              PopupMenuItem(child: ListTile(
-                leading: Text('Sort By BFF',
-                  style: TextStyle(
-                    fontSize: 18
+          PopupMenuButton(
+            onSelected: (value) {
+              print(value);
+            },
+            itemBuilder: (BuildContext context) {
+              return [
+                PopupMenuItem(
+                  child: ListTile(
+                    leading: Text(
+                      'Sort By BFF',
+                      style: TextStyle(fontSize: 18),
+                    ),
                   ),
                 ),
-              ),
-              ),
-
-              PopupMenuItem(child: ListTile(
-                leading: Text('Sort By Gender',
-                  style: TextStyle(
-                      fontSize: 18
+                PopupMenuItem(
+                  child: ListTile(
+                    leading: Text(
+                      'Sort By Gender',
+                      style: TextStyle(fontSize: 18),
+                    ),
                   ),
                 ),
-              ),
-              ),
-
-            ];
+              ];
             },
           )
         ],
       ),
-
       body: Consumer<FriendController>(
         builder: (context, controller, child) {
-         return ListView.builder(
+          return ListView.builder(
             itemBuilder: (BuildContext context, int index) {
               return friendCard(context, controller.friends[index]);
             },
-           itemCount: controller.friends.length,
+            itemCount: controller.friends.length,
           );
         },
-        ),
-
+      ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context) => Addfriends(),));
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => Addfriends(),
+              ));
         },
         child: Icon(Icons.add),
         backgroundColor: Colors.orange,
       ),
-
     );
-
   }
 }
