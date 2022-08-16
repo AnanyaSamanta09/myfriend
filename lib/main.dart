@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:myfriend/controllers/addFriendController.dart';
 import 'package:myfriend/screens/Homepage.dart';
+import 'package:provider/provider.dart';
 import 'package:myfriend/screens/editScreen.dart';
 
 void main(){
@@ -11,9 +13,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: HomePage(),
-      debugShowCheckedModeBanner: false,
+    return MultiProvider(
+      providers: [ChangeNotifierProvider(create:(context)=>FriendController())],
+      child: MaterialApp(
+        home: HomePage(),
+        debugShowCheckedModeBanner: false,
+      ),
     );
   }
 }

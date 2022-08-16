@@ -10,6 +10,7 @@ class CustomTextField extends StatelessWidget {
     return TextFormField(
       controller: controller,
         decoration: InputDecoration(
+
           enabledBorder:OutlineInputBorder(
               borderSide: BorderSide(
                 color: Colors.black,
