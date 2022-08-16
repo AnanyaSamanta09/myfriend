@@ -43,6 +43,50 @@ class HomePage extends StatelessWidget {
           )
         ],
       ),
+
+      body: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: Container(
+          height: 90,
+          width: 400,
+          decoration: BoxDecoration(
+            color: Colors.grey,
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text('Ananya',
+                      style: TextStyle(
+                        fontSize: 25
+                      ),
+                    ),
+                    Text('67',
+                      style: TextStyle(
+                          fontSize: 25
+                      ),
+                    )
+                  ],
+                ),
+                Row(
+                  children: [
+                   IconButton(onPressed: (){}, icon: Icon(Icons.edit)),
+
+                    IconButton(onPressed: (){}, icon: Icon(Icons.favorite_border)),
+
+                    IconButton(onPressed: (){}, icon: Icon(Icons.delete)),
+                  ],
+                )
+              ],
+            ),
+          ),
+        ),
+      ),
+
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.push(context, MaterialPageRoute(builder: (context) => Addfriends(),));

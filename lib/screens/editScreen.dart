@@ -65,10 +65,19 @@ class EditScreen extends StatelessWidget {
               height: 30,
             ),
 
-            MaterialButton(onPressed: (){},
-              child: Text('Submit'),
-              color: Colors.orange,
+            SizedBox(
+              height: 60,
+              width: 400,
+              child: MaterialButton(
+                onPressed: (){},
+                child: Text('Submit',
+                  style: TextStyle(color: Colors.white,
+                      fontSize: 23
+                  ),
+                ),
+                color: Colors.orange,
 
+              ),
             ),
 
           ],

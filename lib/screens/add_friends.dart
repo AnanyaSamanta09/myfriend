@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:myfriend/common/customTextfield.dart';
-import 'package:myfriend/common/radioButton.dart';
 
 class Addfriends extends StatelessWidget {
   // Addfriends({Key? key}) : super(key: key);
@@ -67,14 +66,18 @@ class Addfriends extends StatelessWidget {
           height: 30,
         ),
 
-            MaterialButton(onPressed: (){},
-              child: Text('Submit',
-                style: TextStyle(color: Colors.white,
-                  fontSize: 18
+            SizedBox(
+              height: 60,
+              width: 400,
+              child: MaterialButton(onPressed: (){},
+                child: Text('Submit',
+                  style: TextStyle(color: Colors.white,
+                    fontSize: 23
+                  ),
                 ),
-              ),
-              color: Colors.orange,
+                color: Colors.orange,
 
+              ),
             ),
 
           ],
