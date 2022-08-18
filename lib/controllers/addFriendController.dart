@@ -6,7 +6,7 @@ class FriendController extends ChangeNotifier{
   List<FriendModel> friends =[];
 
   void addNewFriends(String name,int age,String gender) {
-    FriendModel f = FriendModel(name: name, age: age, gender: gender, id: DateTime.now().toString());
+    FriendModel f = FriendModel(name: name, age: age, gender: gender, id: DateTime.now().toString(), isbff: false);
     friends.add(f);
     notifyListeners();
   }
@@ -17,4 +17,15 @@ class FriendController extends ChangeNotifier{
     notifyListeners();
   }
 
+  void addBff(String id){
+    int index = friends.indexWhere((element) => element.id==id);
+    friends[index].markBff();
+    notifyListeners();
+  }
+
+  void removeBff(String id){
+    int index = friends.indexWhere((element) => element.id==id);
+    friends[index].unmarkBff();
+    notifyListeners();
+  }
 }

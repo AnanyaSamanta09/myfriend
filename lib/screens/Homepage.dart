@@ -8,7 +8,6 @@ import 'package:myfriend/screens/editScreen.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatelessWidget {
-  bool isMyBestFriend = false;
   friendCard(BuildContext context, FriendModel friend) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
@@ -42,19 +41,64 @@ class HomePage extends StatelessWidget {
               ),
               Row(
                 children: [
-                  IconButton(onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=> EditScreen()));
-                  }, icon: Icon(Icons.edit)),
                   IconButton(
                       onPressed: () {
-                        isMyBestFriend = true;
+                        // Navigator.push(
+                        //     context,
+                        //     MaterialPageRoute(
+                        //         builder: (context) => EditScreen(
+                        //           age: friend.age,
+                        //           gender: friend.gender,
+                        //           id: friend.id,
+                        //           isBff: friend.isbff,
+                        //           name: friend.name,
+                        //         )));
                       },
-                      icon: Icon(Icons.favorite_border)),
+                      icon: Icon(Icons.edit)),
+                  Consumer<FriendController>(
+                    builder: (BuildContext context, controller, child) {
+                      return IconButton(
+                          onPressed: () {
+                            if (friend.isbff) {
+                              controller.removeBff(friend.id);
+                            } else {
+                              controller.addBff(friend.id);
+                            }
+                          },
+                          icon: Icon(friend.isbff
+                              ? Icons.favorite
+                              : Icons.favorite_border));
+                    },
+                  ),
                   Consumer<FriendController>(
                     builder: (context, controller, child) {
-                      return IconButton(onPressed: () {
-                        controller.removeFriends(friend.id);
-                      },
+                      return IconButton(
+                          onPressed: () {
+                            showDialog(
+                                context: context,
+                                builder: (context) {
+                                  return AlertDialog(
+                                    title: Text(
+                                      'Delete',
+                                    ),
+                                    content: Text('Delete Task ?'),
+                                    actions: [
+                                      TextButton(
+                                        onPressed: () {
+                                          Navigator.pop(context);
+                                        },
+                                        child: Text('Cancel'),
+                                      ),
+                                      TextButton(
+                                          onPressed: () {
+                                            controller.removeFriends(friend.id);
+                                            Navigator.pop(context);
+                                          },
+                                          child: Text('Delete'))
+                                    ],
+                                  );
+                                });
+                          },
                           icon: Icon(Icons.delete));
                     },
                   ),
