@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:myfriend/common/customTextfield.dart';
-import 'package:myfriend/controllers/addFriendController.dart';
+import 'package:myfriend/controllers/FriendController.dart';
 import 'package:provider/provider.dart';
 
 class Addfriends extends StatefulWidget {
@@ -90,38 +90,6 @@ class _AddfriendsState extends State<Addfriends> {
               height: 20,
             ),
 
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text('Best Friend',
-                      style: TextStyle(
-                          fontSize: 18
-                      ),
-                    ),
-                    Radio(value: 'Y', groupValue: bff, onChanged: (value){
-                      setState((){
-                        bff='Y';
-                      });
-                    }),
-                    Text('Yes',
-                      style: TextStyle(
-                          fontSize: 18
-                      ),
-                    ),
-
-                    Radio(value: 'N', groupValue: bff, onChanged: (value){
-                      setState((){
-                        bff='N';
-                      });
-                    }),
-                    Text('No',
-                      style: TextStyle(
-                          fontSize: 18
-                      ),
-                    )
-
-                  ],
-                ),
 
                 SizedBox(
                   height: 30,

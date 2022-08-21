@@ -1,7 +1,7 @@
 import 'dart:ffi';
 
 import 'package:flutter/material.dart';
-import 'package:myfriend/controllers/addFriendController.dart';
+import 'package:myfriend/controllers/FriendController.dart';
 import 'package:myfriend/models/friendModel.dart';
 import 'package:myfriend/screens/add_friends.dart';
 import 'package:myfriend/screens/editScreen.dart';
@@ -15,13 +15,14 @@ class HomePage extends StatelessWidget {
         height: 90,
         width: 400,
         decoration: BoxDecoration(
-          color: Colors.grey,
+          color: Colors.grey.shade300,
         ),
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
+               Image.asset(friend.gender=='M'?'assets/boy.png':'assets/girl.png',height: 50,),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -33,26 +34,13 @@ class HomePage extends StatelessWidget {
                     friend.age.toString(),
                     style: TextStyle(fontSize: 22),
                   ),
-                  Text(
-                    friend.gender,
-                    style: TextStyle(fontSize: 16),
-                  ),
                 ],
               ),
               Row(
                 children: [
                   IconButton(
                       onPressed: () {
-                        // Navigator.push(
-                        //     context,
-                        //     MaterialPageRoute(
-                        //         builder: (context) => EditScreen(
-                        //           age: friend.age,
-                        //           gender: friend.gender,
-                        //           id: friend.id,
-                        //           isBff: friend.isbff,
-                        //           name: friend.name,
-                        //         )));
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => EditFriendScreen(f: friend),));
                       },
                       icon: Icon(Icons.edit)),
                   Consumer<FriendController>(

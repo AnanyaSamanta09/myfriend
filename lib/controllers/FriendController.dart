@@ -10,6 +10,13 @@ class FriendController extends ChangeNotifier{
     friends.add(f);
     notifyListeners();
   }
+  void editFriends(FriendModel f){
+    int index = friends.indexWhere((element) => element.id==f.id);
+    friends[index].name = f.name;
+    friends[index].age= f.age;
+    friends[index].gender =f.gender;
+    notifyListeners();
+  }
 
   void removeFriends(String id){
     int index = friends.indexWhere((element) => element.id==id);

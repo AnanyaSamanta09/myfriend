@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:myfriend/controllers/addFriendController.dart';
+import 'package:myfriend/controllers/FriendController.dart';
 import 'package:myfriend/screens/Homepage.dart';
 import 'package:provider/provider.dart';
 import 'package:myfriend/screens/editScreen.dart';
